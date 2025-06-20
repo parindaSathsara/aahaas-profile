@@ -1,492 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pradeep Kumar Muthusamy - Digital Visiting Card</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        line-height: 1.4;
+      }
+
+      .card-container {
+        perspective: 1200px;
+      }
+
+      .business-card {
+        width: 450px;
+        height: 850px;
+        background: #ffffff;
+        border-radius: 32px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12),
+          0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: visible;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .business-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
+          0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        background: linear-gradient(135deg, #004e64 0%, #476e7c 100%);
+        padding: 40px 40px 50px;
+        text-align: center;
+        position: relative;
+        color: white;
+      }
+
+      .logo-container {
+        /* margin-bottom: 30px; */
+      }
+
+      .logo {
+        width: 150px;
+        height: 65px;
+        border-radius: 20px;
+        object-fit: contain;
+        /* background: #ffffff; */
+        padding: 15px;
+        /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1); */
+        margin: 0 auto;
+      }
+
+      .photo-container {
+        margin-bottom: 25px;
+        position: relative;
+      }
+
+      .profile-photo {
+        width: 160px;
+        height: 160px;
+        border-radius: 60px;
+        object-fit: cover;
+        border: 4px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        margin: 0 auto;
+        display: block;
+      }
+
+      .name {
+        font-size: 32px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .designation {
+        font-size: 18px;
+        color: #ffffff;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        opacity: 0.9;
+        background: rgba(237, 66, 66, 0.2);
+        padding: 8px 24px;
+        border-radius: 25px;
+        display: inline-block;
+        border: 1px solid rgba(237, 66, 66, 0.3);
+      }
+
+      .divider {
+        width: 80px;
+        height: 3px;
+        background: #ed4242;
+        margin: 30px auto 0;
+        border-radius: 2px;
+        box-shadow: 0 2px 8px rgba(237, 66, 66, 0.3);
+      }
+
+      .contact-section {
+        padding: 40px 40px 30px;
+        background: #ffffff;
+      }
+
+      .section-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #004e64;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 18px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+        padding: 16px 18px;
+        border-radius: 14px;
+        background: #f8fafb;
+        border: 2px solid transparent;
+        border-left: 4px solid #ed4242;
+      }
+
+      .contact-item:hover {
+        background: #f0f9ff;
+        border-color: rgba(71, 110, 124, 0.2);
+        transform: translateX(6px);
+        box-shadow: 0 4px 16px rgba(71, 110, 124, 0.1);
+      }
+
+      .contact-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .contact-icon {
+        width: 24px;
+        margin-right: 20px;
+        color: #004e64;
+        font-size: 18px;
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+
+      .contact-content {
+        flex: 1;
+      }
+
+      .contact-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #ed4242;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 6px;
+      }
+
+      .contact-value {
+        font-size: 16px;
+        font-weight: 500;
+        color: #004e64;
+        line-height: 1.4;
+      }
+
+      .address-value {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #476e7c;
+      }
+
+      .action-buttons {
+        padding: 25px 40px 40px;
+        display: flex;
+        gap: 14px;
+        background: #ffffff;
+      }
+
+      .action-btn {
+        flex: 1;
+        padding: 16px 20px;
+        border: 2px solid transparent;
+        border-radius: 14px;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-family: "Inter", sans-serif;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .action-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .action-btn.primary {
+        background: linear-gradient(135deg, #004e64, #476e7c);
+        border-color: #004e64;
+      }
+
+      .action-btn.primary:hover {
+        background: linear-gradient(135deg, #003a4d, #3a5b67);
+      }
+
+      .action-btn.whatsapp {
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        border-color: #25d366;
+      }
+
+      .action-btn.whatsapp:hover {
+        background: linear-gradient(135deg, #20ba5a, #0f7269);
+      }
+
+      .action-btn.email {
+        background: linear-gradient(135deg, #ed4242, #d63384);
+        border-color: #ed4242;
+      }
+
+      .action-btn.email:hover {
+        background: linear-gradient(135deg, #dc2626, #be185d);
+      }
+
+      .card-decoration {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(
+          circle,
+          rgba(237, 66, 66, 0.1),
+          transparent
+        );
+        border-radius: 50%;
+        transform: translate(40px, -40px);
+        pointer-events: none;
+      }
+
+      .header-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+      }
+
+      .info-section {
+        padding: 20px 40px 40px;
+        background: linear-gradient(135deg, #f8fafb, #ffffff);
+        border-top: 1px solid rgba(71, 110, 124, 0.1);
+      }
+
+      .info-text {
+        font-size: 14px;
+        color: #476e7c;
+        text-align: center;
+        font-style: italic;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 500px) {
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            line-height: 1.4;
-        }
-
-        .card-container {
-            perspective: 1200px;
+          padding: 20px 15px;
         }
 
         .business-card {
-            width: 450px;
-            height: 850px;
-            background: #ffffff;
-            border-radius: 32px;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: visible;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .business-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 20px rgba(0, 0, 0, 0.1);
+          width: 380px;
+          height: 800px;
         }
 
         .card-header {
-            background: linear-gradient(135deg, #004e64 0%, #476e7c 100%);
-            padding: 40px 40px 50px;
-            text-align: center;
-            position: relative;
-            color: white;
-        }
-
-        .logo-container {
-            /* margin-bottom: 30px; */
-        }
-
-        .logo {
-            width: 150px;
-            height: 65px;
-            border-radius: 20px;
-            object-fit: contain;
-            /* background: #ffffff; */
-            padding: 15px;
-            /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.1); */
-            margin: 0 auto;
-        }
-
-        .photo-container {
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .profile-photo {
-            width: 160px;
-            height: 160px;
-            border-radius: 60px;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            margin: 0 auto;
-            display: block;
-        }
-
-        .name {
-            font-size: 32px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .designation {
-            font-size: 18px;
-            color: #ffffff;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            opacity: 0.9;
-            background: rgba(237, 66, 66, 0.2);
-            padding: 8px 24px;
-            border-radius: 25px;
-            display: inline-block;
-            border: 1px solid rgba(237, 66, 66, 0.3);
-        }
-
-        .divider {
-            width: 80px;
-            height: 3px;
-            background: #ed4242;
-            margin: 30px auto 0;
-            border-radius: 2px;
-            box-shadow: 0 2px 8px rgba(237, 66, 66, 0.3);
+          padding: 30px 30px 40px;
         }
 
         .contact-section {
-            padding: 40px 40px 30px;
-            background: #ffffff;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #004e64;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 18px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-            padding: 16px 18px;
-            border-radius: 14px;
-            background: #f8fafb;
-            border: 2px solid transparent;
-            border-left: 4px solid #ed4242;
-        }
-
-        .contact-item:hover {
-            background: #f0f9ff;
-            border-color: rgba(71, 110, 124, 0.2);
-            transform: translateX(6px);
-            box-shadow: 0 4px 16px rgba(71, 110, 124, 0.1);
-        }
-
-        .contact-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .contact-icon {
-            width: 24px;
-            margin-right: 20px;
-            color: #004e64;
-            font-size: 18px;
-            margin-top: 4px;
-            flex-shrink: 0;
-        }
-
-        .contact-content {
-            flex: 1;
-        }
-
-        .contact-label {
-            font-size: 12px;
-            font-weight: 700;
-            color: #ed4242;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 6px;
-        }
-
-        .contact-value {
-            font-size: 16px;
-            font-weight: 500;
-            color: #004e64;
-            line-height: 1.4;
-        }
-
-        .address-value {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #476e7c;
+          padding: 30px 30px 25px;
         }
 
         .action-buttons {
-            padding: 25px 40px 40px;
-            display: flex;
-            gap: 14px;
-            background: #ffffff;
-        }
-
-        .action-btn {
-            flex: 1;
-            padding: 16px 20px;
-            border: 2px solid transparent;
-            border-radius: 14px;
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.01em;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-family: 'Inter', sans-serif;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .action-btn.primary {
-            background: linear-gradient(135deg, #004e64, #476e7c);
-            border-color: #004e64;
-        }
-
-        .action-btn.primary:hover {
-            background: linear-gradient(135deg, #003a4d, #3a5b67);
-        }
-
-        .action-btn.whatsapp {
-            background: linear-gradient(135deg, #25d366, #128c7e);
-            border-color: #25d366;
-        }
-
-        .action-btn.whatsapp:hover {
-            background: linear-gradient(135deg, #20ba5a, #0f7269);
-        }
-
-        .action-btn.email {
-            background: linear-gradient(135deg, #ed4242, #d63384);
-            border-color: #ed4242;
-        }
-
-        .action-btn.email:hover {
-            background: linear-gradient(135deg, #dc2626, #be185d);
-        }
-
-        .card-decoration {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, rgba(237, 66, 66, 0.1), transparent);
-            border-radius: 50%;
-            transform: translate(40px, -40px);
-            pointer-events: none;
-        }
-
-        .header-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            pointer-events: none;
+          padding: 25px 30px 40px;
+          flex-direction: column;
         }
 
         .info-section {
-            padding: 20px 40px 40px;
-            background: linear-gradient(135deg, #f8fafb, #ffffff);
-            border-top: 1px solid rgba(71, 110, 124, 0.1);
+          padding: 20px 30px 30px;
         }
 
-        .info-text {
-            font-size: 14px;
-            color: #476e7c;
-            text-align: center;
-            font-style: italic;
-            line-height: 1.5;
+        .name {
+          font-size: 28px;
         }
 
-        @media (max-width: 500px) {
-            body {
-                padding: 20px 15px;
-            }
-            
-            .business-card {
-                width: 380px;
-                height: 800px;
-            }
-
-            .card-header {
-                padding: 30px 30px 40px;
-            }
-
-            .contact-section {
-                padding: 30px 30px 25px;
-            }
-
-            .action-buttons {
-                padding: 25px 30px 40px;
-                flex-direction: column;
-            }
-
-            .info-section {
-                padding: 20px 30px 30px;
-            }
-
-            .name {
-                font-size: 28px;
-            }
-
-            .designation {
-                font-size: 16px;
-            }
-
-            .logo {
-                width: 200px;
-                height: 200px;
-            }
+        .designation {
+          font-size: 16px;
         }
 
-        /* Smooth font rendering */
-        * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
+        .logo {
+          width: 150px;
+          height: 65px;
         }
+      }
 
-        /* Animation for subtle entrance */
-        .business-card {
-            animation: cardEntrance 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
+      /* Smooth font rendering */
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
 
-        @keyframes cardEntrance {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+      /* Animation for subtle entrance */
+      .business-card {
+        animation: cardEntrance 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      @keyframes cardEntrance {
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="card-container">
-        <div class="business-card">
-            <div class="card-header">
-                <div class="header-pattern"></div>
-                <div class="card-decoration"></div>
-                
-                <div class="logo-container">
-                    <img src="https://gateway.aahaas.com/aahaas.png" alt="Aahaas Logo" class="logo">
-                </div>
-                
-                <div class="photo-container">
-                    <img src="./profile.jpeg" alt="Pradeep Kumar Muthusamy" class="profile-photo">
-                </div>
-                
-                <div class="name">Pradeep Kumar Muthusamy</div>
-                <div class="designation">Managing Director</div>
-                <div class="divider"></div>
-            </div>
+      <div class="business-card">
+        <div class="card-header">
+          <div class="header-pattern"></div>
+          <div class="card-decoration"></div>
 
-            <div class="contact-section">
-                <div class="section-title">Contact Information</div>
-                
-                <a href="tel:+940703288141" class="contact-item">
-                    <i class="fas fa-phone contact-icon"></i>
-                    <div class="contact-content">
-                        <div class="contact-label">Phone Number</div>
-                        <div class="contact-value">+94 070 328 8141</div>
-                    </div>
-                </a>
+          <div class="logo-container">
+            <img
+              src="https://gateway.aahaas.com/aahaas.png"
+              alt="Aahaas Logo"
+              class="logo"
+            />
+          </div>
 
-                <a href="mailto:pradeep.kumar@aahaas.com" class="contact-item">
-                    <i class="fas fa-envelope contact-icon"></i>
-                    <div class="contact-content">
-                        <div class="contact-label">Email Address</div>
-                        <div class="contact-value">pradeep.kumar@aahaas.com</div>
-                    </div>
-                </a>
+          <div class="photo-container">
+            <img
+              src="./profile.jpeg"
+              alt="Pradeep Kumar Muthusamy"
+              class="profile-photo"
+            />
+          </div>
 
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt contact-icon"></i>
-                    <div class="contact-content">
-                        <div class="contact-label">Office Address</div>
-                        <div class="contact-value address-value">One Galle Face Tower, 2208<br>1A Centre Road, Colombo 002<br>Sri Lanka</div>
-                    </div>
-                </div>
-
-                <a href="https://wa.me/940703288141" target="_blank" class="contact-item">
-                    <i class="fab fa-whatsapp contact-icon"></i>
-                    <div class="contact-content">
-                        <div class="contact-label">WhatsApp</div>
-                        <div class="contact-value">+94 070 328 8141</div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="action-buttons">
-                <a href="https://wa.me/940703288141" class="action-btn whatsapp" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    WhatsApp
-                </a>
-                <a href="mailto:pradeep.kumar@aahaas.com" class="action-btn email">
-                    <i class="fas fa-envelope"></i>
-                    Email
-                </a>
-                <a href="tel:+940703288141" class="action-btn primary">
-                    <i class="fas fa-phone"></i>
-                    Call
-                </a>
-            </div>
-
-            <div class="info-section">
-                <div class="info-text">
-                    Uniquely Yours
-                </div>
-            </div>
+          <div class="name">Pradeep Kumar Muthusamy</div>
+          <div class="designation">Managing Director</div>
+          <div class="divider"></div>
         </div>
+
+        <div class="contact-section">
+          <div class="section-title">Contact Information</div>
+
+          <a href="tel:+940703288141" class="contact-item">
+            <i class="fas fa-phone contact-icon"></i>
+            <div class="contact-content">
+              <div class="contact-label">Phone Number</div>
+              <div class="contact-value">+94 070 328 8141</div>
+            </div>
+          </a>
+
+          <a href="mailto:pradeep.kumar@aahaas.com" class="contact-item">
+            <i class="fas fa-envelope contact-icon"></i>
+            <div class="contact-content">
+              <div class="contact-label">Email Address</div>
+              <div class="contact-value">pradeep.kumar@aahaas.com</div>
+            </div>
+          </a>
+
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <div class="contact-content">
+              <div class="contact-label">Office Address</div>
+              <div class="contact-value address-value">
+                One Galle Face Tower, 2208<br />1A Centre Road, Colombo 002<br />Sri
+                Lanka
+              </div>
+            </div>
+          </div>
+
+          <a
+            href="https://wa.me/940703288141"
+            target="_blank"
+            class="contact-item"
+          >
+            <i class="fab fa-whatsapp contact-icon"></i>
+            <div class="contact-content">
+              <div class="contact-label">WhatsApp</div>
+              <div class="contact-value">+94 070 328 8141</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="action-buttons">
+          <a
+            href="https://wa.me/940703288141"
+            class="action-btn whatsapp"
+            target="_blank"
+          >
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp
+          </a>
+          <a href="mailto:pradeep.kumar@aahaas.com" class="action-btn email">
+            <i class="fas fa-envelope"></i>
+            Email
+          </a>
+          <a href="tel:+940703288141" class="action-btn primary">
+            <i class="fas fa-phone"></i>
+            Call
+          </a>
+        </div>
+
+        <div class="info-section">
+          <div class="info-text">Uniquely Yours</div>
+        </div>
+      </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Enhanced interaction effects
-            const card = document.querySelector('.business-card');
-            const contactItems = document.querySelectorAll('.contact-item');
-            
-            // Subtle card tilt on mouse move
-            card.addEventListener('mousemove', function(e) {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 25;
-                const rotateY = (centerX - x) / 25;
-                
-                card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`;
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                card.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) translateY(0)';
-            });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Enhanced interaction effects
+        const card = document.querySelector(".business-card");
+        const contactItems = document.querySelectorAll(".contact-item");
 
-            // Copy functionality with improved feedback
-            contactItems.forEach(item => {
-                const emailItem = item.href && item.href.includes('mailto:');
-                const phoneItem = item.href && item.href.includes('tel:');
-                const whatsappItem = item.href && item.href.includes('wa.me');
-                
-                if (!emailItem && !phoneItem && !whatsappItem) {
-                    item.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const textElement = this.querySelector('.contact-value');
-                        const text = textElement ? textElement.textContent.trim() : '';
-                        
-                        if (text && navigator.clipboard) {
-                            navigator.clipboard.writeText(text).then(() => {
-                                showCopyFeedback(this);
-                            });
-                        }
-                    });
-                }
-            });
+        // Subtle card tilt on mouse move
+        card.addEventListener("mousemove", function (e) {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
 
-            function showCopyFeedback(element) {
-                const originalBg = element.style.background;
-                const originalBorder = element.style.borderLeftColor;
-                element.style.background = '#dcfce7';
-                element.style.borderLeftColor = '#22c55e';
-                
-                const feedback = document.createElement('div');
-                feedback.innerHTML = '<i class="fas fa-check"></i> Copied to clipboard!';
-                feedback.style.cssText = `
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = (y - centerY) / 25;
+          const rotateY = (centerX - x) / 25;
+
+          card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`;
+        });
+
+        card.addEventListener("mouseleave", function () {
+          card.style.transform =
+            "perspective(1200px) rotateX(0) rotateY(0) translateY(0)";
+        });
+
+        // Copy functionality with improved feedback
+        contactItems.forEach((item) => {
+          const emailItem = item.href && item.href.includes("mailto:");
+          const phoneItem = item.href && item.href.includes("tel:");
+          const whatsappItem = item.href && item.href.includes("wa.me");
+
+          if (!emailItem && !phoneItem && !whatsappItem) {
+            item.addEventListener("click", function (e) {
+              e.preventDefault();
+              const textElement = this.querySelector(".contact-value");
+              const text = textElement ? textElement.textContent.trim() : "";
+
+              if (text && navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                  showCopyFeedback(this);
+                });
+              }
+            });
+          }
+        });
+
+        function showCopyFeedback(element) {
+          const originalBg = element.style.background;
+          const originalBorder = element.style.borderLeftColor;
+          element.style.background = "#dcfce7";
+          element.style.borderLeftColor = "#22c55e";
+
+          const feedback = document.createElement("div");
+          feedback.innerHTML =
+            '<i class="fas fa-check"></i> Copied to clipboard!';
+          feedback.style.cssText = `
                     position: fixed;
                     top: 50%;
                     left: 50%;
@@ -502,21 +534,21 @@
                     animation: copyFeedback 3s cubic-bezier(0.4, 0, 0.2, 1);
                     font-family: 'Inter', sans-serif;
                 `;
-                
-                document.body.appendChild(feedback);
-                
-                setTimeout(() => {
-                    element.style.background = originalBg;
-                    element.style.borderLeftColor = originalBorder;
-                    if (document.body.contains(feedback)) {
-                        document.body.removeChild(feedback);
-                    }
-                }, 3000);
-            }
 
-            // Add copy feedback animation
-            const style = document.createElement('style');
-            style.textContent = `
+          document.body.appendChild(feedback);
+
+          setTimeout(() => {
+            element.style.background = originalBg;
+            element.style.borderLeftColor = originalBorder;
+            if (document.body.contains(feedback)) {
+              document.body.removeChild(feedback);
+            }
+          }, 3000);
+        }
+
+        // Add copy feedback animation
+        const style = document.createElement("style");
+        style.textContent = `
                 @keyframes copyFeedback {
                     0% { 
                         opacity: 0; 
@@ -536,8 +568,8 @@
                     }
                 }
             `;
-            document.head.appendChild(style);
-        });
+        document.head.appendChild(style);
+      });
     </script>
-</body>
+  </body>
 </html>
